@@ -124,3 +124,60 @@ Les tests unitaires JUnit 5 ont permis d'identifier deux anomalies réelles dans
 Les deux anomalies ont été corrigées, puis les tests ont été relancés afin de vérifier les correctifs.
 
 À la fin du TP1, **les 25 tests unitaires sont attendus au vert**, couvrant les huit règles métier du panier et constituant une base de tests de non-régression pour les prochains TP.
+
+
+---
+
+## Anomalie 3 — Le stock n'est pas libéré après un paiement refusé
+
+### 1. Règle concernée
+
+**C5 — Gestion d'un paiement refusé**
+
+Lorsqu'un paiement est refusé, le système doit libérer le stock réservé pour la commande avant de lever une exception `PaiementRefuseException`.
+
+Aucune commande ne doit être enregistrée et aucune notification ne doit être envoyée si le paiement échoue.
+
+### 2. Test qui révèle l'anomalie
+
+**Classe de test :** Classe de test du service de commande  
+**Méthode :** `unPaiementRefuseLibereLeStock()`
+
+Le test utilise Mockito pour simuler les dépendances du service :
+
+- Le stock est disponible pour le produit `SOUR-02`, en quantité de 2 unités.
+- Le paiement est refusé avec le motif « Solde insuffisant ».
+
+Le test vérifie ensuite trois comportements :
+
+- Une exception `PaiementRefuseException` est levée avec le motif du refus.
+- La méthode `stock.liberer("SOUR-02", 2)` est appelée.
+- Aucune interaction n'a lieu avec les services `commandes` et `notifications`.
+
+Le test échoue parce que la méthode `stock.liberer("SOUR-02", 2)` n'est jamais appelée, même si l'exception attendue est correctement levée.
+
+### 3. Cause de l'anomalie
+
+Dans le service de commande, lorsque le paiement était refusé, l'exception `PaiementRefuseException` était levée immédiatement, sans libérer le stock précédemment réservé.
+
+Cette omission provoquait le blocage inutile des produits réservés. À terme, le stock disponible pouvait être incorrectement considéré comme épuisé, empêchant d'autres clients de commander les produits concernés.
+
+Cette anomalie n'aurait pas été détectée par un test vérifiant uniquement la levée de l'exception. La vérification des interactions avec Mockito a permis d'identifier l'appel manquant.
+
+### 4. Correctif appliqué
+
+Le service a été corrigé afin de libérer les quantités réservées avant de lever l'exception.
+
+```java
+if (!resultat.accepte()) {
+    for (LignePanier ligne : panier.lignes()) {
+        stock.liberer(
+                ligne.produit().reference(),
+                ligne.quantite()
+        );
+    }
+    throw new PaiementRefuseException(resultat.motifRefus());
+}
+```
+
+**Résultat :** Le stock est libéré lorsque le paiement est refusé. Aucune commande n'est enregistrée et aucune notification n'est envoyée. Après correction, les 30 tests passent avec succès.
