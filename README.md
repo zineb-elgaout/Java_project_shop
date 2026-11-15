@@ -10,7 +10,8 @@ Les règles métier détaillées sont dans le dossier `docs`
 
 ## Règles du panier
 - R3 : au plus 10 unités d’un même produit.
-- R5 : livraison 30 DH, offerte à partir de 500 DH d’achats.
+- R5 : livraison 30 DH, offerte dès que le sous-total atteint 500 DH.
+- R8 : pas de code promo sur un panier vide.
 ## Équipe
 - Salma : responsable qualité
 - Nadia : responsable produit
