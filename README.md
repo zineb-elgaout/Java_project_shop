@@ -17,3 +17,4 @@ Les règles métier détaillées sont dans le dossier `docs`
 - Salma : responsable qualité
 - Nadia : responsable produit
 - Yassine : développeur
+- Karim : support client
