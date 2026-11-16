@@ -13,6 +13,11 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <sonar.projectKey>shopflow</sonar.projectKey>
+        <sonar.projectName>ShopFlow</sonar.projectName>
+        <sonar.projectVersion>0.2.0</sonar.projectVersion>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
     </properties>
  
     <dependencyManagement>
@@ -52,6 +57,15 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
         </dependency>
     </dependencies>
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>5.8.0.7211</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
