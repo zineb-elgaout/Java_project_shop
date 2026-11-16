@@ -6,3 +6,5 @@ Règles écrites en TDD au TP2 (classe `CalculateurFidelite`).
 | F2 | Un client GOLD gagne deux fois plus de points qu'un client STANDARD. |
 | F3 | Les points sont plafonnés à 500 par commande, après le multiplicateur. |
 | F4 | Un montant négatif est refusé. |
+
+Une commande refusée ne laisse aucune trace dans la base.
