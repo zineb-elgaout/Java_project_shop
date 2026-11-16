@@ -16,7 +16,7 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
         <sonar.projectKey>shopflow</sonar.projectKey>
         <sonar.projectName>ShopFlow</sonar.projectName>
-        <sonar.projectVersion>0.2.0</sonar.projectVersion>
+        <sonar.projectVersion>0.3.0</sonar.projectVersion>
         <sonar.host.url>http://localhost:9000</sonar.host.url>
     </properties>
  
