@@ -8,3 +8,5 @@ Règles écrites en TDD au TP2 (classe `CalculateurFidelite`).
 | F4 | Un montant négatif est refusé. |
 
 Une commande refusée ne laisse aucune trace dans la base.
+
+Les points sont crédités quand la commande passe au statut CONFIRMEE. 
