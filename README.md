@@ -19,3 +19,6 @@ Les règles métier détaillées sont dans le dossier `docs`
 - Nadia : responsable produit
 - Yassine : développeur
 - Karim : support client
+
+## Feuille de route
+Brancher ShopFlow sur une vraie base de données (TP3)  
