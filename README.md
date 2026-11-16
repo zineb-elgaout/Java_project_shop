@@ -14,11 +14,7 @@ Les règles métier détaillées sont dans le dossier `docs`
 - R5 : livraison 30 DH, offerte dès que le sous-total atteint 500 DH.
 - R6 : un code promo donne de 1 à 50 % de remise sur le sous-total.
 - R8 : pas de code promo sur un panier vide.
-## Équipe
-- Salma : responsable qualité
-- Nadia : responsable produit
-- Yassine : développeur
-- Karim : support client
+
 
 ## Feuille de route
 Brancher ShopFlow sur une vraie base de données (TP3)  
